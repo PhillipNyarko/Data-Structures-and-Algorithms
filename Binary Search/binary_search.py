@@ -1,43 +1,5 @@
 from jovian.pythondsa import evaluate_test_cases
 
-"""QUESTION 1: Alice has some cards with numbers written on them. She arranges the cards in decreasing
-order, and lays them out face down in a sequence on a table. She challenges Bob to pick out the card
-containing a given number by turning over as few cards as possible. Write a function to help Bob locate the card."""
-
-""" 1. There is a series of cards sorted in descending order. There is a target card with a given number on it.
-    find the card while checking as few cards as possible.
-    2a. example input -> cards = [9, 8, 7, 6, 5, 4, 3,] , target_card = 5  (a list of numbers and a target card)
-    2b. example output -> " The card "5" is found at index 4 " (index of the target card)
-    3. Create a function called "binary_search" that iterates over the a given input list.
-             use a "for-loop" for iteration, 
-             start iteration from the middle index if the input is odd, 
-             start iteration from the index that corresponds to the length of the list / 2 if the input list is even
-             because the input is sorted, 
-             if the initial number is greater than the target, get rid of every number before that number and that.
-"""
-
-""" BRUTE FORCE SIMPLE SOLUTION
-1. if the target card is not within the cards list, return -1
-2. else, go through each element of the cards list and compare the value with the target
-3. if the value == the target value, return the current index
-
-def locate_card(cards, target):
-    if target not in cards:
-        return -1
-    else:
-        for i in range(len(cards)):
-            if cards[i] == target:
-                return i
-"""
-
-""" FINAL SOLUTION: Binary Search 
-1. Begin the algorithm at the middle of the cards list. (length of the list divided by 2)
-2. If the value at the middle == the target, return the index.
-3. If it is less than the target number search the first half of the list.
-4. If it is greater than the target number, search the second half of the list.
-5. If no more elements remain return -1
-"""
-
 
 def binary_search(lo, hi, condition):
     while lo <= hi:  # as long as we still have elements in the list, we run binary search

@@ -1,0 +1,79 @@
+1. State the problem clearly. Define expected inputs and output formats.
+	A sorted list that has been rotated n times is given.
+	Rotation is defined as  remove the last element of the list and adding it before the first element.
+	Determine how many times it would take to rotate the list back to sorted.
+	Max time complexity allowed in O(log n), where n is the length of the list.
+
+	Input: list of integers
+
+	Output: Single number value indicating how many rotations are needed to
+	return the list to sorted.
+
+2. Brainstorm sample inputs and outputs.
+
+	sorted list would be: [3, 4, 5, 6, 7, 8]
+
+	list is already sorted
+		input: [3, 4, 5, 6, 7, 8]
+		output: 0
+
+	1 rotation
+		input: [8, 3, 4, 5, 6, 7]
+		output: 1
+
+	2 rotations
+		input: [7, 8, 3, 4, 5, 6,]
+		output: 2
+
+	10 rotations
+		input: [5, 6, 7, 8, 3, 4]
+		output: 10
+
+	What if the list is one away from being sorted,
+	but in the opposite direction? ie:
+		input: [4, 5, 6, 7, 8, 3]
+		the 3 was taken from the front
+		and put in the back rather than
+		taking the 8 and putting it in the
+		front
+	instead of
+		input : [8, 3, 4, 5, 6, 7]
+		the 8 was taken from the front
+		and put in the back
+	that is essentially:
+	A list that was rotated n-1 times, where n is the size of the list.
+		input: [8, 3, 4, 5, 6, 7]
+		output: 1
+
+	A list that was rotated n times (do you get back the original list here?)
+		input: [3, 4, 5, 6, 7, 8]
+		output: 0
+
+	An empty list.
+		input: []
+		output: -1
+
+	A list containing just one element.
+		input: [8]
+		output: 0
+
+3. Come up with a correct solution to the problem, state it in plain english
+	*** Because we don't know how many iterations will occur before we
+	    rotate the list back to sorted, we will use a while loop.
+
+	    The first thing we need to do is define a way to tell if the
+            list is sorted in ascending order.
+
+	    then we must find a way to rotate the list back to its sorted form,
+	    without the alg messes up on any basic edge cases
+
+	    then we'll return the number of rotations it takes to get the input
+	    back to sorted***
+
+	    This strategy works, but the time complexity is 0(n^2). If I found
+	    a better way to shift the array or check if the array is sorted,
+	    we would be at O(n).
+
+	    *** Trick for Rotating lists
+	    list = list[3:] + list[:3]
+	    ***
