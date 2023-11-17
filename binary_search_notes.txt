@@ -1,0 +1,91 @@
+Binary Search
+
+1. State the problem clearly. Identify the input and output formats.
+
+	Problem:
+		You are given a list of integers.
+		They are sorted from least to greatest (index n < index n +1).
+		There is a target value in the list.
+		Return the index of the target value if it exists. Otherwise, return -1.
+
+	Input: List of integers
+	Output: Single integer (the index of the target value or - 1 if not found)
+
+
+2. Come up with some example inputs & outputs. Take note of the constraints and try to cover all edge cases.
+
+	Constraints:
+		All the integers in list are unique.
+		list is sorted in ascending order.
+	These Constraints mean that:
+		There could be negeative numbers
+		There could be large value gaps
+		The number could not be in the list at all
+		The number could be the only value in the list.
+
+	What if the numbers are both negative and positive?
+	Input: [-3, -2, -1, 0, 1, 2, 3],  1
+	Output: 3
+
+	What if each number is in ascending order but their not adjacent numbers?
+	Input: [-1,0,3,5,9,12], 9
+	Output: 4
+
+	What if there is only one number in the list?
+	Input: [-1], -1
+	Output: 0
+
+
+
+
+3. Come up with a correct solution for the problem. State it in plain English.
+	*** Because we dont know how many iterations it will take to
+	    find the target, we will use a while loop ***
+
+	1. find the middle point of the list of numbers
+	2. check if the value at the middle point is greater than or less than the target value
+	3. If the middle point value is greater than the target value, we dont have to look at any
+		indexes past that point because they will all be greater so we can eliminate that
+		section of the list from the search
+	4. If the middle value is less than the target value, we dont have to look at any index
+		values before it because they will all be less than the target value. Therefore,
+		we can eliminate that part of the list from the search.
+	5. Since there are no repeated values, once we find the target we must return that index.
+	6 If the target value is definitely not in the list, return -1
+
+4. Implement the solution and test it using example inputs. Fix bugs, if any.
+	1. Define a while loop that runs until the low value is greater than the high value
+		meaning that the whole list has been searched through
+
+	2. Define the bounds vars that will be used to iterate over
+		low = 0
+		high = upper bound of the list
+
+	3. find the middle point of the list of numbers
+		the middle index is the low bound + the high bound // 2
+		the middle value is the value at the middle index
+		*** This must be within the loop***
+
+		Considering the fact that the middle index is wrong when the list length is even
+		We can subtract 1 when the list length is even, but lets think of a constant time
+		way to do this.
+
+	4. If the middle point value is greater than the target value, we dont have to look at any
+		indexes past that point because they will all be greater so we can eliminate that
+		section of the list from the search
+			How do we shrink the scope?
+				Set the high bounds equal to one less than current middle point
+
+	4. If the middle point value is less than the target value, we dont have to look at any
+		indexes before that point because they will all be less so we can eliminate that
+		section of the list from the search
+			How do we shrink the scope?
+				Set the low bounds equal to one more than current middle point
+	5. If the while loop ends without reaching a return statement, then the target is not in
+		the list so return -1
+
+
+5. Analyze the algorithm's complexity and identify inefficiencies, if any.
+	inefficiency #1: find a simpler way to find the middle value.
+
+6. Apply the right technique to overcome the inefficiency. Repeat steps 3 to 6.
