@@ -1,0 +1,30 @@
+    _________ What is Big O?_________
+
+Big O notation is used to describe the performance of an algorithm as the amount of the data increases.
+The letter "n" is typically used to describe the number of steps needed to complete and algorithm.
+
+
+    _______ Basic Examples of Complexities_____
+O(1) - Constant time
+    Takes the same amount of time to execute regardless of the data size
+
+O(log n) - Logarithmic Time
+    As the data size increases, the number of operations grows, but very slowly, and less than linearly
+
+O(n) - Linear Time
+    As the data size increases, the number operations increases proportionately
+
+0(n log n) - Quasilinear Time
+    Very similar to linear time, but if the data set gets rather large it begins to become less efficient
+
+0(n^2) - Quadratic Time
+    As the data size increases, the number of operations doubles
+
+o(n!) - Factorial Time
+    As the data size increases, the number of operations increases by a factorial of n
+
+
+    ______How to Analyze an Algorithm's Time Complexity______
+
+
+
