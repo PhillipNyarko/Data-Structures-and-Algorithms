@@ -75,5 +75,86 @@
 	    we would be at O(n).
 
 	    *** Trick for Rotating lists
-	    list = list[3:] + list[:3]
+	    list = list[n:] + list[:n] # right rotation
+	    list = list[-n:] + list[:-n] # left rotation
 	    ***
+        I MESSED UP BECAUSE I MISUNDERSTOOD THE QUESTION I answered was given a rotated list, how many end-to-front rotations
+      Would it take for the list to be returned to sorted?
+
+      I should have answered, "how many rotations did it take for the list to go from sorted to what
+      it is?"
+
+      I did find the answer, but I found the right answer to the wrong question, "how many times would it
+      take to rotate the list back to sorted?" Instead of "how many rotations were used to achieve the
+      current list from a sorted one?
+
+
+
+
+    Initial solution
+
+    a rotation is taking the last element of the list and moving to the front.
+    a sorted list would have the smallest element at index 0
+    so rather than counting forward, we need to "time-travel" and count backwards to get the original list
+    find the smallest number
+        the smallest number will be the only number that is smaller than the one behind it
+        the only edge case is if the smallest number is already at index 0 then technically there
+        is no number behind it. Funny enough this edge case solves its self because
+        if we look for i-1 at index 0 when iterating using a loop, i-1 = 0-1 = -1 which is the last
+        index in the loop so the condition number @ index i < i-1 still holds true
+    return the distance between its current index and index 0
+     the distance is actually just equal to the index  of the smallest number
+
+
+
+    At first, I did not see how binary search could be applied here but now that we are looking for
+    a specific number it makes sense.
+
+
+Linear Time Complexity approach
+
+def count_rotations(nums):
+    for i in range(len(nums)):
+        if nums[i] < nums[i - 1] or len(nums) == 1:
+            return i
+    return -1
+
+    *** I used a for loop for the brute force approach because I know how long I am going to be iterating for***
+    because we have to search through the whole list in order in the worst case scenario one by one, the time complexity
+    is directly dependent on the length of the list. Therefore, the time complexity is O(n), where n is the length
+    of the list.
+
+BINARY SEARCH APPROACH
+
+1. We need to find the smallest number in the list.
+   Binary Search helps us do this more efficiently.
+
+2. In a typical binary search preformed on a sorted list,
+    we know whether to look left or right within the list from the mid-point
+    immediately by comparing the middle index value with the value to the left or right
+    because the list is sorted in an order.
+    Here's the tip we've been given
+
+    " If the middle element of the list is smaller than the last element of the range,
+     then the answer lies to the left of it. Otherwise, the answer lies to the right.
+     Do you see why this strategy works?"
+
+     Ok, lets think about it.
+     The sorted version of what ever list we get is sorted in ascending order
+      [1, 2, 3, 4, 5, 6, 7, 8]
+     We start by looking at the middle index.
+     index 3 = 4
+     if the middle index is < target
+        we look to the right only moving forward
+     Otherwise we look to the left moving forward
+
+     cool but what if the list looks like
+     [6, 7, 8, 1, 2, 3, 4, 5]
+     now if we look at the middle value and ask the same questions it does not work
+     lets say the target is 8, and we start at 2
+        then if we do middle index < target we will get a misleading value
+
+     if
+
+
+
