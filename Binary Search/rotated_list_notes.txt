@@ -153,8 +153,3 @@ BINARY SEARCH APPROACH
      now if we look at the middle value and ask the same questions it does not work
      lets say the target is 8, and we start at 2
         then if we do middle index < target we will get a misleading value
-
-     if
-
-
-
