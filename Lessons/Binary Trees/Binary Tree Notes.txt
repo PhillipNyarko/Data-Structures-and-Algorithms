@@ -1,0 +1,60 @@
+QUESTION 1: As a senior backend engineer at Jovian, you are tasked with developing a fast in-memory data structure
+to manage profile information (username, name and email) for 100 million users. It should allow the
+following operations to be performed efficiently:
+
+Insert the profile information for a new user.
+Find the profile information of a user, given their username
+Update the profile information of a user, given their username
+List all the users of the platform, sorted by username
+You can assume that usernames are unique.
+
+1. State the problem clearly. Identify the input and output formats
+    Create a data structure than can manage 100 million different profiles. You must be able to quickly:
+    Create and store a new user
+    Find the user profile information
+    Update the user profile information
+    List all the users of the platform sorted by username
+
+    Essentially, create a data structure that can preform store 100 million records and preform insertion, search,
+    update, and list operations efficiently.
+
+  Each user is going to be an object of the "User" Class
+
+  The database is also defined as a class with four different functions: insert, find, update, and list_all
+
+2. come up with some example inputs & outputs
+
+
+Exercise: List some scenarios for testing the class methods insert, search, update and list_all.
+
+Insert:
+
+Inserting into an empty database of users
+Trying to insert a user with a username that already exists
+Inserting a user with a username that does not exist
+Inserting Invalid Value Types
+
+Search:
+
+Attempting to search for a user that doesn't exist
+Attempting to search an empty database
+
+Update:
+
+Update a user that doesn't exist
+Inputting data in the wrong field
+
+List All:
+
+Calling list all when there are no Users in the database
+
+3. Come Up With a Correct Solution. State it in plain english.
+
+    Store the User objects in a list sorted by username
+
+    create a function for each of the needed tasks
+
+    Insert: Loop through the list and add the new user at a position that keeps the list sorted.
+    Find: Loop through the list and find the user object with the username matching the query.
+    Update: Loop through the list, find the user object matching the query and update the details
+    List: Return the list of user objects.

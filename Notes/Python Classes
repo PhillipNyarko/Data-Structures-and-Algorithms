@@ -1,0 +1,8 @@
+Magic Methods
+    Magic methods are methods that start and end with double underscores (eg: __init__()).
+    The __repr__ magic method is used to show a string representation of an object for debugging purposes.
+    The __str__ magic method is similar, but is commonly used to show a more user friendly string version of an object.
+    The __init__ magic method is the initializer/constructor of the class. It takes in fields as arguments.
+    There are a lot of magic methods in python, and they seem to cover every basic functionality of the language
+       (eg: __le__() for less than or equal to)
+

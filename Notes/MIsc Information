@@ -1,0 +1,19 @@
+Python strings can be compared using the regular comparison operators (==, <, >, !=, <=, >=).
+There are no special methods for comparison.
+
+Example:
+
+fruits = ['apple', 'banana', 'cherry']
+
+i = 0
+
+name = "bracken"
+while i < len(fruits):
+	if fruits[i] > name:
+    	break
+fruits.insert(name)
+print(fruits)
+
+output:
+    ['apple', 'baacken', 'banana', 'cherry']
+------------------------------------------------------------------------------------------------------------------------
