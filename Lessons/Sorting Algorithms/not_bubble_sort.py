@@ -3,32 +3,22 @@
 from colorama import Fore  # for test cases
 
 
-def is_sorted(nums):
-    for i in range(len(nums)):
-        if i + 1 < len(nums) and nums[i] > nums[i + 1]:
-            return False
-    return True
-
-
 def swap(nums, index):
-    if index + 1 < len(nums):
-        temp = nums[index]
-        nums[index] = nums[index + 1]
-        nums[index + 1] = temp
+    nums[index], nums[index + 1] = nums[index + 1], nums[index]
 
 
 def bubble_sort(nums):
     i = 0
     j = 1
-    while not is_sorted(nums):
-        if i + 1 < len(nums) and nums[i] > nums[i + 1]:
+    while i < len(nums) - 1:
+        if nums[i] > nums[i + 1]:
             swap(nums, i)
-        while i - j >= 0 and nums[i - j] > nums[i - j + 1]:
-            swap(nums, i - j)
-            j += 1
+            while i - j >= 0 and nums[i - j] > nums[i - j + 1]:
+                swap(nums, i - j)
+                j += 1
+            j = 1
 
         i += 1
-        j = 1
 
     return nums
 
