@@ -7,7 +7,7 @@ def swap(nums, index):
     nums[index], nums[index + 1] = nums[index + 1], nums[index]
 
 
-def bubble_sort(nums):
+def not_bubble_sort(nums):
     i = 0
     j = 1
     while i < len(nums) - 1:
@@ -50,7 +50,7 @@ def run_test_cases(tests):
         test_case_name = dict_key['test case name']
         function_input = dict_key['input']
         expected_output = dict_key['output']
-        actual_output = bubble_sort(dict_key['input'])
+        actual_output = not_bubble_sort(dict_key['input'])
 
         if actual_output == expected_output:
             print(f'''{Fore.LIGHTWHITE_EX}
