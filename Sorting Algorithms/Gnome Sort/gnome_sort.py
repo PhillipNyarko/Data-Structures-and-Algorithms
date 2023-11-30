@@ -7,7 +7,7 @@ def swap(nums, index):
     nums[index], nums[index + 1] = nums[index + 1], nums[index]
 
 
-def not_bubble_sort(nums):
+def insertion_sort(nums):
     i = 0
     j = 1
     while i < len(nums) - 1:
@@ -19,7 +19,6 @@ def not_bubble_sort(nums):
             j = 1
 
         i += 1
-
     return nums
 
 
@@ -63,6 +62,18 @@ test_cases = [{
                81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
                91, 92, 93, 94, 95, 96, 97, 98, 99, 100
                ]
+}, {
+    "test case name": "All Sorted But one element in the middle",
+    'input': [-23, -22, 4, 5, -100, 6, 7, 8, 9, 10],
+    'output': [-100, -23, -22, 4, 5, 6, 7, 8, 9, 10]
+}, {
+    "test case name": "2 Unsorted Elements",
+    'input': [1, 0],
+    'output': [0, 1]
+}, {
+    "test case name": "One Element",
+    'input': [46],
+    'output': [46]
 }]
 
 
@@ -74,7 +85,7 @@ def run_test_cases(tests):
         test_case_name = dict_key['test case name']
         function_input = dict_key['input']
         expected_output = dict_key['output']
-        actual_output = not_bubble_sort(dict_key['input'])
+        actual_output = insertion_sort(dict_key['input'])
 
         if actual_output == expected_output:
             print(f'''{Fore.LIGHTWHITE_EX}
@@ -107,7 +118,7 @@ def run_test_cases(tests):
 
     print(f'''
     # {Fore.GREEN}Passed {Fore.LIGHTWHITE_EX}: {passed}
-    # {Fore.RED}Failed {Fore.LIGHTWHITE_EX}: {failed}           
+    # {Fore.RED}Failed {Fore.LIGHTWHITE_EX}: {failed}             
     ''')
 
 
