@@ -1,7 +1,12 @@
 # Made independently, not part of Jovian AI Course
 import copy
+import os
+import time
 
-from colorama import Fore  # for test cases
+RED = "\u001b[31m"
+YELLOW = "\u001b[33m"
+GREEN = "\u001b[32m"
+WHITE = "\u001b[37m"
 
 
 def swap(nums, index):
@@ -87,7 +92,7 @@ def run_test_cases(tests):
         expected_output = test['output']
         actual_output = gnome_sort(copy.deepcopy(function_input))
 
-        print(f''' {Fore.LIGHTWHITE_EX}
+        print(f''' {WHITE}
         TEST #{i + 1}
 
               Test Case: {test_case_name}
@@ -98,16 +103,62 @@ def run_test_cases(tests):
         ''')
 
         if actual_output == expected_output:
-            print(f"              {Fore.GREEN}TEST PASSED{Fore.LIGHTWHITE_EX}")
+            print(f"              {GREEN}TEST PASSED{WHITE}")
             passed += 1
         else:
-            print(f"              {Fore.RED}TEST FAILED{Fore.LIGHTWHITE_EX}")
+            print(f"              {RED}TEST FAILED{WHITE}")
             failed += 1
 
-        print("-" * 1000)  # cool/unnecessary way to print 100 character line. This way you don't have to count or adjust
+        print("-" * 1000)  # cool/unnecessary way to print 100 char line. This way you don't have to count or adjust
 
-    print(Fore.GREEN + "Passed" + Fore.LIGHTWHITE_EX + ": " + str(passed))
-    print(Fore.RED + "Failed" + Fore.LIGHTWHITE_EX + ": " + str(failed))
+    print(GREEN + "Passed" + WHITE + ": " + str(passed))
+    print(RED + "Failed" + WHITE + ": " + str(failed))
 
 
-run_test_cases(test_cases)
+def run_visualisation(nums):
+    i = 0
+    j = 1
+
+    nums_copy = nums.copy()
+    current_index = nums_copy[i] = str(nums_copy[i])
+
+    def cls():
+        os.system("cls")
+
+    def update_display(number_list, color_values, wait=0.7):
+        print(WHITE + "[", end="")
+        for value in range(len(number_list)):
+            print(color_values[value] + str(number_list[value]), end="")
+            if value < len(number_list) - 1:
+                print(WHITE + ", ", end="")
+        print(WHITE + "]", end="")
+        time.sleep(wait)
+        print("\r", end="")
+
+    def render(number_list, index, pointer):
+        color_values = [""] * len(number_list)
+
+        color_values[index] = YELLOW
+        update_display(number_list, color_values)
+        color_values[pointer] = YELLOW
+        update_display(number_list, color_values)
+        color_values[index] = GREEN
+        update_display(number_list, color_values, wait=0)
+        color_values[pointer] = GREEN
+        update_display(number_list, color_values, wait=0)
+
+
+    render(nums, i, j)
+
+    while i < len(nums) - 1:
+        if nums[i] > nums[i + 1]:
+            swap(nums, i)
+            while i - j >= 0 and nums[i - j] > nums[i - j + 1]:
+                swap(nums, i - j)
+                j += 1
+            j = 1
+
+        i += 1
+
+
+run_visualisation([1, 2, 5, 3, 4])
