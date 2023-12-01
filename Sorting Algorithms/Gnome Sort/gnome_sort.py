@@ -1,4 +1,5 @@
 # Made independently, not part of Jovian AI Course
+import copy
 
 from colorama import Fore  # for test cases
 
@@ -7,7 +8,7 @@ def swap(nums, index):
     nums[index], nums[index + 1] = nums[index + 1], nums[index]
 
 
-def insertion_sort(nums):
+def gnome_sort(nums):
     i = 0
     j = 1
     while i < len(nums) - 1:
@@ -80,46 +81,33 @@ test_cases = [{
 def run_test_cases(tests):
     passed, failed = 0, 0
 
-    for index, dict_key in enumerate(tests):
+    for i, test in enumerate(tests):
+        test_case_name = test["test case name"]
+        function_input = test['input']
+        expected_output = test['output']
+        actual_output = gnome_sort(copy.deepcopy(function_input))
 
-        test_case_name = dict_key['test case name']
-        function_input = dict_key['input']
-        expected_output = dict_key['output']
-        actual_output = insertion_sort(dict_key['input'])
+        print(f''' {Fore.LIGHTWHITE_EX}
+        TEST #{i + 1}
+
+              Test Case: {test_case_name}
+              Input: {function_input}
+
+              Expected Output: {expected_output}
+              Actual Output:   {actual_output}
+        ''')
 
         if actual_output == expected_output:
-            print(f'''{Fore.LIGHTWHITE_EX}
-            TEST #{index + 1}
-            
-            Test Case: {test_case_name}
-            Input: {function_input}
-            
-            Expected Output: {expected_output}
-            Actual Output:   {actual_output}
-            
-            {Fore.GREEN}Test Passed{Fore.LIGHTWHITE_EX}
-            -----------------------------------------------------------------------------------
-            ''')
+            print(f"              {Fore.GREEN}TEST PASSED{Fore.LIGHTWHITE_EX}")
             passed += 1
         else:
-            print(f'''
-            TEST #{index + 1}
-
-            Test Case: {test_case_name}
-            Input: {function_input}
-
-            Expected Output: {expected_output}
-            Actual Output:   {actual_output}
-
-            {Fore.RED}Test Failed{Fore.LIGHTWHITE_EX}
-            -----------------------------------------------------------------------------------
-            ''')
+            print(f"              {Fore.RED}TEST FAILED{Fore.LIGHTWHITE_EX}")
             failed += 1
 
-    print(f'''
-    # {Fore.GREEN}Passed {Fore.LIGHTWHITE_EX}: {passed}
-    # {Fore.RED}Failed {Fore.LIGHTWHITE_EX}: {failed}             
-    ''')
+        print("-" * 1000)  # cool/unnecessary way to print 100 character line. This way you don't have to count or adjust
+
+    print(Fore.GREEN + "Passed" + Fore.LIGHTWHITE_EX + ": " + str(passed))
+    print(Fore.RED + "Failed" + Fore.LIGHTWHITE_EX + ": " + str(failed))
 
 
 run_test_cases(test_cases)
