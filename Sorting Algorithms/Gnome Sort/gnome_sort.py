@@ -118,84 +118,50 @@ def run_test_cases(tests):
 
 
 def run_visualisation(nums):
-    i = 0
-    j = 1
 
-    nums_copy = nums.copy()
-
-    """
-    def update_display(number_list, color_values, wait=0.0):
-        print(WHITE + "[", end="")
-        for value in range(len(number_list)):
-            print(color_values[value] + str(number_list[value]), end="")
-            if value < len(number_list) - 1:
-                print(WHITE + ", ", end="")
-        print(WHITE + "]", end="")
-        time.sleep(wait)
-        print("\r", end="")
-
-    def color_index(index, color, secondary_index=-1, wait=0.01):
-        if secondary_index != -1:
-            colors[index] = color
-            colors[secondary_index] = color
-            update_display(nums, colors, wait=wait)
-
-        colors[index] = color
-        update_display(nums, colors, wait=wait)
-
-    def clear_red():
-        for color in range(len(colors)):
-            if colors[color] == RED:
-                colors[color] = WHITE
-
-    colors = [WHITE]*len(nums)
-
-    while i < len(nums) - 1:
-        if nums[i] > nums[i + 1]:
-            color_index(i, RED)
-            color_index(i + 1, YELLOW)
-            swap(nums, i)
-            update_display(nums, colors)
-            color_index(i, GREEN, secondary_index=i + 1)
-            color_index(i, WHITE, secondary_index=i + 1)
-
-            while i - j >= 0 and nums[i - j] > nums[i - j + 1]:
-                color_index(i - j + 1, RED)
-                swap(nums, i - j)
-                color_index(i - j + 1, WHITE)
-                color_index(i - j, RED)
-                j += 1
-            clear_red()
-            j = 1
-        i += 1
-    update_display(nums, colors)
-
-    for i in range(len(nums)):
-        color_index(i, GREEN, wait=0.01)
-
-"""
+    nums = [i//4 for i in nums]
     nums_copy = nums.copy()
     gnome_sort(nums_copy)
     biggest_number = nums_copy[-1]
-    print(biggest_number)
 
-    grid = []
+    # make sure your $ is in order
+    def draw_columns(index, color, finishing_animation=False):
+        for i in range(biggest_number, 0, -1):
+            for j in range(len(nums)):
+                if nums[j] >= i:
+                    if finishing_animation:
+                        if j <= index:
+                            print(color + " $ " + WHITE, end="")
+                        else:
+                            print(" $ ", end="")
+                    else:
+                        if j == index:
+                            print(color + " $ " + WHITE, end="")
+                        else:
+                            print(" $ ", end="")
+                else:
+                    print("   ", end="")
+            print()  # new line
+        time.sleep(0.01)
+        for i in range(nums_copy[-1] + 4):
+            print()
+
+    current_index = 0
+    pointer = 1
+    while current_index < len(nums) - 1:
+        if nums[current_index] > nums[current_index + 1]:
+            swap(nums, current_index)
+            draw_columns(current_index, GREEN)
+            while current_index - pointer >= 0 and nums[current_index - pointer] > nums[current_index - pointer + 1]:
+                swap(nums, current_index - pointer)
+                draw_columns(current_index - pointer, RED)
+                pointer += 1
+            pointer = 1
+
+        current_index += 1
+
     for i in range(len(nums)):
-        grid.append([])
-        for j in range(nums[i]):
-            grid[i].append("_")
-    print(grid)
-    print(nums_copy)
-
-    for i in range(biggest_number):
-        for j in range(len(nums)):
-            if nums[j] <= i:
-                print(" " + str(nums[j]) + " ", end="")
-
-            else:
-                print("   ", end="")
-        print()  # new line
-    print(nums[25])
+        draw_columns(i, GREEN, finishing_animation=True)
 
 
 run_visualisation([92, 47, 53, 16, 81, 24, 1, 64, 54, 67, 78, 3, 26, 95, 68, 85, 4, 74, 55, 40, 23, 65, 27, 36, 30, 97, 31, 22, 77, 96, 83, 41, 34, 14, 56, 73, 9, 89, 39, 5])
