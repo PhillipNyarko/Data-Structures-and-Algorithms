@@ -1,5 +1,7 @@
 # Made independently, not part of Jovian AI Course
 import copy
+import os
+import random
 import time
 
 RED = "\u001b[31m"
@@ -125,29 +127,31 @@ def run_visualisation(nums):
     biggest_number = nums_copy[-1]
 
     # make sure your $ is in order
-    def draw_columns(index, color, finishing_animation=False):
+    def draw_columns(index, color, finishing_animation=False, last_frame_of_finishing_animation=False):
         for i in range(biggest_number, 0, -1):
             for j in range(len(nums)):
                 if nums[j] >= i:
                     if finishing_animation:
-                        if j <= index:
-                            print(color + " $ " + WHITE, end="")
+                        if last_frame_of_finishing_animation:
+                            print(color + " x " + WHITE, end="")
+                        elif j <= index:
+                            print(color + " x " + WHITE, end="")
                         else:
-                            print(" $ ", end="")
+                            print(" x ", end="")
                     else:
                         if j == index:
-                            print(color + " $ " + WHITE, end="")
+                            print(color + " x " + WHITE, end="")
                         else:
-                            print(" $ ", end="")
+                            print(" x ", end="")
                 else:
                     print("   ", end="")
             print()  # new line
         time.sleep(0.01)
-        for i in range(nums_copy[-1] + 4):
-            print()
+        os.system('cls')
 
     current_index = 0
     pointer = 1
+
     while current_index < len(nums) - 1:
         if nums[current_index] > nums[current_index + 1]:
             swap(nums, current_index)
@@ -161,7 +165,10 @@ def run_visualisation(nums):
         current_index += 1
 
     for i in range(len(nums)):
-        draw_columns(i, GREEN, finishing_animation=True)
+        if i < len(nums) - 1:
+            draw_columns(i, GREEN, finishing_animation=True)
+        else:
+            draw_columns(i, GREEN, finishing_animation=True, last_frame_of_finishing_animation=True)
 
 
 run_visualisation([92, 47, 53, 16, 81, 24, 1, 64, 54, 67, 78, 3, 26, 95, 68, 85, 4, 74, 55, 40, 23, 65, 27, 36, 30, 97, 31, 22, 77, 96, 83, 41, 34, 14, 56, 73, 9, 89, 39, 5])
