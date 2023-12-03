@@ -1,12 +1,14 @@
 # Made independently, not part of Jovian AI Course
 import copy
-import os
 import time
 
 RED = "\u001b[31m"
 YELLOW = "\u001b[33m"
 GREEN = "\u001b[32m"
-WHITE = "\u001b[37m"
+WHITE = "\033[1;37m"
+BLUE = "\u001b[34m"
+LIGHT_BLUE = "\033[1;34m"
+LIGHT_PURPLE = "\033[1;35m"
 
 
 def swap(nums, index):
@@ -120,12 +122,9 @@ def run_visualisation(nums):
     j = 1
 
     nums_copy = nums.copy()
-    current_index = nums_copy[i] = str(nums_copy[i])
 
-    def cls():
-        os.system("cls")
-
-    def update_display(number_list, color_values, wait=0.7):
+    """
+    def update_display(number_list, color_values, wait=0.0):
         print(WHITE + "[", end="")
         for value in range(len(number_list)):
             print(color_values[value] + str(number_list[value]), end="")
@@ -135,30 +134,68 @@ def run_visualisation(nums):
         time.sleep(wait)
         print("\r", end="")
 
-    def render(number_list, index, pointer):
-        color_values = [""] * len(number_list)
+    def color_index(index, color, secondary_index=-1, wait=0.01):
+        if secondary_index != -1:
+            colors[index] = color
+            colors[secondary_index] = color
+            update_display(nums, colors, wait=wait)
 
-        color_values[index] = YELLOW
-        update_display(number_list, color_values)
-        color_values[pointer] = YELLOW
-        update_display(number_list, color_values)
-        color_values[index] = GREEN
-        update_display(number_list, color_values, wait=0)
-        color_values[pointer] = GREEN
-        update_display(number_list, color_values, wait=0)
+        colors[index] = color
+        update_display(nums, colors, wait=wait)
 
+    def clear_red():
+        for color in range(len(colors)):
+            if colors[color] == RED:
+                colors[color] = WHITE
 
-    render(nums, i, j)
+    colors = [WHITE]*len(nums)
 
     while i < len(nums) - 1:
         if nums[i] > nums[i + 1]:
+            color_index(i, RED)
+            color_index(i + 1, YELLOW)
             swap(nums, i)
+            update_display(nums, colors)
+            color_index(i, GREEN, secondary_index=i + 1)
+            color_index(i, WHITE, secondary_index=i + 1)
+
             while i - j >= 0 and nums[i - j] > nums[i - j + 1]:
+                color_index(i - j + 1, RED)
                 swap(nums, i - j)
+                color_index(i - j + 1, WHITE)
+                color_index(i - j, RED)
                 j += 1
+            clear_red()
             j = 1
-
         i += 1
+    update_display(nums, colors)
+
+    for i in range(len(nums)):
+        color_index(i, GREEN, wait=0.01)
+
+"""
+    nums_copy = nums.copy()
+    gnome_sort(nums_copy)
+    biggest_number = nums_copy[-1]
+    print(biggest_number)
+
+    grid = []
+    for i in range(len(nums)):
+        grid.append([])
+        for j in range(nums[i]):
+            grid[i].append("_")
+    print(grid)
+    print(nums_copy)
+
+    for i in range(biggest_number):
+        for j in range(len(nums)):
+            if nums[j] <= i:
+                print(" " + str(nums[j]) + " ", end="")
+
+            else:
+                print("   ", end="")
+        print()  # new line
+    print(nums[25])
 
 
-run_visualisation([1, 2, 5, 3, 4])
+run_visualisation([92, 47, 53, 16, 81, 24, 1, 64, 54, 67, 78, 3, 26, 95, 68, 85, 4, 74, 55, 40, 23, 65, 27, 36, 30, 97, 31, 22, 77, 96, 83, 41, 34, 14, 56, 73, 9, 89, 39, 5])
