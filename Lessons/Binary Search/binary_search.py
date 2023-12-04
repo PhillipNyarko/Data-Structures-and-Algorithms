@@ -14,6 +14,21 @@ def binary_search(lo, hi, condition):
             lo = mid + 1  # shrink the cards list search scope to equal one more than the current middle value
     return -1  # return -1 if the whole cards list is searched and the value is not found
 
+def recursive_binary_search(nums, target):
+    """returns the index position and the value of the target position if found, else returns none"""
+    """Begins @ midpoint of list, checks if target is higher/lower, draws first index to previous midpoint +1 repeats"""
+    """ This function returns the value of the search to thh previous function that called it"""
+    """This function has a logarithmic run time with a a time complexity of O(log(n))"""
+    if len(nums) == 0:
+        return False
+    else:
+        midpoint = len(nums)//2
+        if nums[midpoint] == target:
+            return True
+        elif nums[midpoint] < target:
+            return recursive_binary_search(nums[midpoint+1:], target)
+        else:
+            return recursive_binary_search(nums[:midpoint-1], target)
 
 """ The "locate_card" function is used to find the middle index and pass it to the "test_location" function.
 If the "test_location" returns found, then the middle has been found, else we alter the list scope
