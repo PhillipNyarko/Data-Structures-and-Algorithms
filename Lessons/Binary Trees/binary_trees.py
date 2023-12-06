@@ -39,13 +39,27 @@ class UserDatabase:
         return self.users
 
 
-Bob = User("bobIsCool", "Bob Hunt", "HuntBob@gmail.com")
-Tim = User("timRunsTheWorld", "Timothy Chalamet", "ChalametTimothy@yahoo.com")
-Mary = User("maryLovesFlowers", "Mary Schafer", "SchaferMary@gmail.com")
-Cameron = User("camIsGrand", "Cameron Boyle", "BoyleCameron@hotmail.com")
-Elda = User("eldaNotEldin", "Elda Minuet", "MinuetaElda@outlook.com")
-Princess = User("princessesAndPeaches", "Princess Imbatu", "ImbatuPrincess@gmail.com")
-Olaf = User("olafIsUnderTheWeather", "Olaf Snow", "SnowOlaf@aol.com")
+bob = User("bobIsCool", "Bob Hunt", "HuntBob@gmail.com")
+tim = User("timRunsTheWorld", "Timothy Chalamet", "ChalametTimothy@yahoo.com")
+mary = User("maryLovesFlowers", "Mary Schafer", "SchaferMary@gmail.com")
+cameron = User("camIsGrand", "Cameron Boyle", "BoyleCameron@hotmail.com")
+elda = User("eldaNotEldin", "Elda Minuet", "MinuetaElda@outlook.com")
+princess = User("princessesAndPeaches", "Princess Imbatu", "ImbatuPrincess@gmail.com")
+olaf = User("olafIsUnderTheWeather", "Olaf Snow", "SnowOlaf@aol.com")
 
-Users = [Bob, Tim, Mary, Cameron, Elda, Princess, Olaf]
+Users = [bob, tim, mary, cameron, elda, princess, olaf]
 
+database = UserDatabase()
+
+database.insert(bob)
+database.insert(tim)
+database.insert(mary)
+
+user = database.find('maryLovesFlowers')
+print(user)
+
+print(database.list_all())
+
+database.insert(cameron)
+
+print(database.list_all())
