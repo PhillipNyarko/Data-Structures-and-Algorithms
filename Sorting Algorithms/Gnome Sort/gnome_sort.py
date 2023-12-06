@@ -1,7 +1,10 @@
 # Made independently, not part of Jovian AI Course
+
+""" I made a sorting algorithm while "away" on a "trip" and when I got back turns out it was just something called
+gnome sort lol """
+
 import copy
 import os
-import random
 import time
 
 RED = "\u001b[31m"
@@ -121,7 +124,7 @@ def run_test_cases(tests):
 
 def run_visualisation(nums):
 
-    nums = [i//4 for i in nums]
+    nums = [i//3 for i in nums]
     nums_copy = nums.copy()
     gnome_sort(nums_copy)
     biggest_number = nums_copy[-1]
@@ -146,7 +149,7 @@ def run_visualisation(nums):
                 else:
                     print("   ", end="")
             print()  # new line
-        time.sleep(0.01)
+        time.sleep(0.05)
         os.system('cls')
 
     current_index = 0
@@ -171,4 +174,7 @@ def run_visualisation(nums):
             draw_columns(i, GREEN, finishing_animation=True, last_frame_of_finishing_animation=True)
 
 
-run_visualisation([92, 47, 53, 16, 81, 24, 1, 64, 54, 67, 78, 3, 26, 95, 68, 85, 4, 74, 55, 40, 23, 65, 27, 36, 30, 97, 31, 22, 77, 96, 83, 41, 34, 14, 56, 73, 9, 89, 39, 5])
+run_visualisation([92, 47, 53, 16, 81, 24, 1, 64, 54, 67,
+                   78, 3, 26, 95, 68, 85, 4, 74, 55, 40,
+                   23, 65, 27, 36, 30, 97, 31, 22, 77, 96,
+                   83, 41, 34, 14, 56, 73, 9, 89, 39, 5])
