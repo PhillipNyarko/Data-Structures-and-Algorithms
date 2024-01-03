@@ -1,0 +1,62 @@
+
+1. State the problem in plain English
+You are give a list of numbers. You are also given a target value.
+Find the two numbers in the list that add up to the target value.
+
+2. Define the Input and Output Types
+Input: Unsorted List of integers (eg: [5, 22, 4, 11, 33], Integer target value (eg: 33)
+Output: Integer list containing the index of the two numbers that add up to the target value.
+
+3. Define Sample Inputs and Expected Outputs, edge cases and constraints.
+    Important Constraints
+    1. The list will always have at least two elements
+    2. The list will always have one valid solution
+
+    a. Input: nums = [1, 2, 3, 4, 5], target = 4
+        Output: [0, 2]
+    b. Input: nums = [3,2,4], target = 6
+        Output: [1,2]
+    c. Input: nums = [3,3], target = 6
+        Output: [0,1]
+
+
+4. Pseudocode a naive approach
+It is not certain when or where we'll find the two answer indices so a while loop seems best
+But, we have a finite list that is the exact length of the max potential iterations so a for loop works
+
+A while loop is likely better when the worst case complexity for the loop is not O(n)
+
+start at index 0
+
+if the first index is equal to the index next to it:
+     return the two indices
+else:
+    compare the first index with the index that is another position to the right of the one just chceked
+
+repeat this process until either the two indices we are looking for is found
+or all of the indices have been compared with the first index
+
+if all the indices have been compared with the first index, repeat the process starting with the second index
+repeat this process until the answer is found
+
+
+for i in range(len(nums):
+    for j in range(1, len(nums):
+        add index i to index j
+        if index i + index j = target
+            return index 0 and index 1
+
+
+repeat until all values have been compared with index 0
+if the answer is not found, repeat the entire process with starting with index 1
+
+5. Code naive approach and test
+
+4. Analyze the time complexity
+
+6. Look for improvement areas/inefficiencies
+Maybe sort the list and do binary search
+
+7. Pseudocode a more efficient approach
+
+8. Code final algorithm.

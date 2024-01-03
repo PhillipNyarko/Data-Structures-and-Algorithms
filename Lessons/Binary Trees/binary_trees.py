@@ -55,8 +55,8 @@ database.insert(bob)
 database.insert(tim)
 database.insert(mary)
 
-user = database.find('maryLovesFlowers')
-print(user)
+user_to_be_located = database.find('maryLovesFlowers')
+print(user_to_be_located)
 
 print(database.list_all())
 
