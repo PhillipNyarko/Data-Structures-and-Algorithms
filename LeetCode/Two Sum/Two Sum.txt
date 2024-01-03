@@ -31,7 +31,7 @@ start at index 0
 if the first index is equal to the index next to it:
      return the two indices
 else:
-    compare the first index with the index that is another position to the right of the one just chceked
+    compare the first index with the index that is another position to the right of the one just checked
 
 repeat this process until either the two indices we are looking for is found
 or all of the indices have been compared with the first index
