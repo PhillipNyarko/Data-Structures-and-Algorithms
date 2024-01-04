@@ -24,6 +24,6 @@ def remove_duplicates(nums):
     return unique_elements, nums
 
 
-my_list = [3, 3, 3, 6, 6, 7, 7, 8, 8, 8, 9, 20, 20, 21]
+my_list = [1,1,2]
 
 print(remove_duplicates(my_list))
