@@ -43,41 +43,41 @@ remove index 1 because it is the same as index 0\
 
 *** so its obvious now that the "Index out of bounds error occurs because after popping an element from the
 list, the length of the list is n-1. After the for loop is initialized the len value is not calculated again
-to accomodate for the change in length
+to accommodate for the change in length"
 
-this means that if the original length of the array is 10 and you pop 3 elements, the loop will still run
-10 times unless other wise stopped. If it is not stopped it will lead to an "index out of bounds error".
+this means that if the original length of the array is 10, and you pop 3 elements, the loop will still run
+10 times unless otherwise stopped. If it is not stopped it will lead to an "index out of bounds error".
 
 option 1: use and if statement to check if the values are still within bounds
 
 option 2: make a copy of the nums array and compare values and delete values in the array that way
 
 
-___either way, we need to know how long to runn the loops____
+___either way, we need to know how long to run the loops____
 
 1. My first thought naturally is to run the loop for the length of the array. Meaning if the array is 10
 indexes long, we loop ten times. The problem is, even if we get rid of one element. Then we cant run 10 times
-without and index out of bounds error. Also the time complexity is O(n^2) which is terrible.
+without and index out of bounds error. Also, the time complexity is O(n^2) which is terrible.
 
-**** i just noticed something. the output will be accepted if i dont pop but rather replace the duplicates
-in the list with spaces. I need to read the directions more thouroughly, so that I have the whole picture,
-sometimes theres also clues and stuff.***
+**** I just noticed something. the output will be accepted if I don't pop but rather replace the duplicates
+in the list with spaces. I need to read the directions more thoroughly, so that I have the whole picture,
+sometimes there's also clues and stuff.***
 
 2. Second thought, instead of popping from list. I will replace duplicates with a space. That way I avoid any
 index out of bounds errors.
 
 
-*** one of the test cases uses an array of length 2 so because you are wrtiing in the "solutions" class,
-you can hard code or iterater over anything manually without and index out of bounds error"
+*** one of the test cases uses an array of length 2 so because you are writing in the "solutions" class,
+you can hard code or iterator over anything manually without and index out of bounds error"
 
 
 
 
 ___Things I need to look up after___
-how do the ranges work for for loops
+how do the ranges work for loops
 how does .pop() work?
 how to handle i+1 cases when at the bounds of the iterable
-when do we do length of list - 1 again?? its been a minute
+when do we do length of list - 1 again?? it's been a minute
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
@@ -90,14 +90,14 @@ class Solution:
 
 
 
-We are not that far off from the solution, dont give up.
+We are not that far off from the solution, don't give up.
 
 I have written enough to identify which indices need to be removed.
-The problem is if i use pop, it shrinks the array and shifts everything down in a way that messes stuff up
+The problem is if I use pop, it shrinks the array and shifts everything down in a way that messes stuff up
 
 
-I think next time i need to think about the problem more befor just going with a for loop.
-asking my self "ok, what type of data structure, algorithim or iterating function would work best here?
+I think next time I need to think about the problem more before just going with a for loop.
+asking my self "ok, what type of data structure, algorithm or iterating function would work best here?"
 
 
 
@@ -130,7 +130,7 @@ the length of the list is decreased by 1
             nums.append(out[i])
 
 
-so I was able to cheese it and passs 360/362 test but now im exceeding the time limit which is good
+so I was able to cheese it and pass 360/362 test but now im exceeding the time limit which is good
 because it gives me a reason to upgrade what I have into an actual proper solution.
 
  class Solution:
@@ -153,7 +153,76 @@ because it gives me a reason to upgrade what I have into an actual proper soluti
 
 
 1. State the problem clearly
+    Given a list of integers that are sorted in increasing order, remove all the duplicates "in place"
+    (without creating and modifying a copy of the list (modify the given list)) and return the number of
+    unique elements.
+
+2. Define Sample Inputs and Outputs, edge cases, and constraints
+    Notable Constraints
+         Each array element is greater than or equal to the element to its left
+         It does not matter what is left over in the list after deleting the duplicates
+         The nums list can potentially contain negative numbers
+         The length of the nums list will always be greater than or equal to 1
 
 
+    Input: nums = [1,1,2]
+    Output: return 2, nums list should equal [1,2,_]
+    Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
 
+    Input: nums = [0,0,1,1,1,2,2,3,3,4]
+    Output: return 5, nums list should equal [0,1,2,3,4,_,_,_,_,_]
+    Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
+
+    Input: nums = [3,3,3,6,6,7,7,8,8,8,9,20,20,21]
+    Output: return 7, nums list should equal [3,6,7,8,9,20,21,_,_,_,_,_,_,_]
+
+3. Brainstorm and pseudocode a solution
+
+*** Because It is not certain how many duplicates of each number will have to be removed
+a while loop works best in this case ***
+
+    Thought 1 - pointer & counter approach
+        "My initial thought was to compare nums[n] with nums[n+1] and if they equal
+         to push the list over into its place. This is inefficient though, because
+         if nums[n] nums[n+1] multiple times in a row, lets say 3 times, then we would
+         check 3 times and shift the list three times.
+         ----------------------------------------------------------------------------------------
+         Instead, lets get the current index
+         and count the number of duplicate of this index are next to it. Then shift the whole
+         list over that many times. Reduces the number of modifications of the list from 3 to 1.
+         Let's also keep a running total of the number of duplicates, so at the end we can add that many
+         _'s to the end of the list"
+
+       create a pointer that will move along the list,
+       a counter that will count duplicates,
+       a variable to store the total number of duplicates,
+       and a loop control variable
+
+            current_index = 0
+            list_length = len(given list of numbers)
+            pointer = current_index + 1 (pointer moves along the list to check for duplicates)
+            duplicates = 0 (number of duplicates of the current index)
+
+            total_duplicates = 0 (total number of duplicates)
+
+       while current_index < list_length -1:
+            if the value at the pointer's index = the value at the current index:
+                add one to the duplicates variable
+                increase the value of the pointer by one to check the next index over
+            else (the value at the pointer's index != value at the current index):
+                this means we have found all the duplicates of the current index if any
+                shift the list over to the left once for every duplicate found
+                update the list length
+                add the number of duplicates found to the total_duplicates
+                reset duplicates to 0
+                Increase current_index by 1
+                pointer = current_index + 1
+
+       create a variable unique_elements to store the length of the array (this now is the number of unique elements)
+       use the total_duplicates variable to append that many _'s to the end of the list
+
+       return unique_elements, given input array
+
+4. Analyze Time Complexity, Note any inefficiencies to be improved upon
+    Time Complexity O(n * m) where m is the length of the array slice (this is my best guess)
 
