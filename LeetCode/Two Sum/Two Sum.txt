@@ -28,7 +28,7 @@ A while loop is likely better when the worst case complexity for the loop is not
 
 start at index 0
 
-if the first index is equal to the index next to it:
+if the first index + the index next to it = the target:
      return the two indices
 else:
     compare the first index with the index that is another position to the right of the one just checked
