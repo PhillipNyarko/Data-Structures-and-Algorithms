@@ -3,27 +3,32 @@ def remove_duplicates(nums):
     pointer = 1
     duplicates = 0
 
-    total_duplicates = 0
-
     i = 0  # loop control variable
     while i < list_length - 1:
-        if nums[pointer] == nums[i]:
+        if nums[pointer] == nums[i] and pointer != -1:
             duplicates += 1
-            pointer += 1
+            if pointer + 1 > list_length - 1:
+                pointer = -1
+            else:
+                pointer += 1
         else:
-            nums = nums[:i + 1] + nums[i + duplicates + 1:]
+            before = nums[:i + 1]
+            after = nums[i + duplicates + 1:]
+
+            nums.clear()
+            nums.extend(before)
+            nums.extend(after)
+
             list_length = len(nums)
-            total_duplicates += duplicates
             duplicates = 0
             i += 1
             pointer = i + 1
 
     unique_elements = len(nums)
-    nums = nums + ["_"] * total_duplicates
 
     return unique_elements, nums
 
 
-my_list = [1,1,2]
+my_list = [3, 3, 3, 6, 6, 7, 7, 8, 8, 8, 9, 20, 20, 21]
 
 print(remove_duplicates(my_list))
