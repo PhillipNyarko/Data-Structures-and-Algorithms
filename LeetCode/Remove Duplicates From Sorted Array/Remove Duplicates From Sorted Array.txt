@@ -224,6 +224,7 @@ a while loop works best in this case ***
        return unique_elements, given input array
 
 Function was adjusted for edge case where all elements are the same
+The pointer is set to -1 if it would cause an index out of bounds error by being incremented
 
 4. Analyze Time Complexity, Note any inefficiencies to be improved upon
     Time Complexity O(n) because the function must iterate at least once over each index
