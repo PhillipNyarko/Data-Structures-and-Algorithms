@@ -223,6 +223,12 @@ a while loop works best in this case ***
 
        return unique_elements, given input array
 
+Function was adjusted for edge case where all elements are the same
+
 4. Analyze Time Complexity, Note any inefficiencies to be improved upon
-    Time Complexity O(n * m) where m is the length of the array slice (this is my best guess)
+    Time Complexity O(n) because the function must iterate at least once over each index
+
+*** Note: If given a list, reassigning that list variable to any other value creates a new variable in a different
+memory location. To avoid this, use list modification methods from the list class like extend() (multiple items)
+and append() (one item), rather than reassigning the given list to a new variable.***
 

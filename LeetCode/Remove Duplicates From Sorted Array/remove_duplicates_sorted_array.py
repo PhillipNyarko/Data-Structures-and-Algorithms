@@ -12,8 +12,8 @@ def remove_duplicates(nums):
             else:
                 pointer += 1
         else:
-            before = nums[:i + 1]
-            after = nums[i + duplicates + 1:]
+            before = nums[:i + 1]  # stores elements before the duplicates
+            after = nums[i + duplicates + 1:]  # stores elements after the duplicates
 
             nums.clear()
             nums.extend(before)
