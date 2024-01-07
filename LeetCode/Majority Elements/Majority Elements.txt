@@ -1,0 +1,15 @@
+1. Given a list of integers, return the value that occurs 50% of the time or higher
+
+2. Example 1:
+    Input: nums = [3,2,3]
+    Output: 3
+
+   Example 2:
+    Input: nums = [2,2,1,1,1,2,2]
+    Output: 2
+
+3.  Create a frequency table to store the number of each element
+    Iterate through the frequency table and return the key that has a value
+    that is greater than or equal to half the given list.
+
+4. Time complexity: O(n)
