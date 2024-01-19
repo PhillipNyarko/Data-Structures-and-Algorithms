@@ -151,6 +151,7 @@ def run_visualisation(nums):
             print()  # new line
         time.sleep(0.05)
         os.system('cls')
+        os.system('clear')
 
     current_index = 0
     pointer = 1
