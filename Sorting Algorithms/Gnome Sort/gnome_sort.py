@@ -150,8 +150,12 @@ def run_visualisation(nums):
                     print("   ", end="")
             print()  # new line
         time.sleep(0.05)
-        os.system('cls')
-        os.system('clear')
+
+        os_info = os.uname()
+        if os_info.sysname == "Linux":
+            os.system('clear')
+        else:
+            os.system('cls')
 
     current_index = 0
     pointer = 1
