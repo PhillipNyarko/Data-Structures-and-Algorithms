@@ -58,3 +58,42 @@ Calling list all when there are no Users in the database
     Find: Loop through the list and find the user object with the username matching the query.
     Update: Loop through the list, find the user object matching the query and update the details
     List: Return the list of user objects.
+
+
+4. Implement the solution
+
+5. Identify time complexities
+ The time complexity for every operation is O(n)
+ with the exception of the find command.
+ This is because they are dependant on the input size of the list, as they have to iterate throught the whole lis
+ 
+
+6. Come up with solution that mitigates ineffeciencie
+Using a balanced binary search tree, we will create a structure for completing the functions in the class with a higher
+efficiency.
+
+    What is a Binary Tree?
+    - A binary treee is a data structure that consists of nodes. Each node can have between 0 and 2 children.
+      The child nodes are labeled left and right nodes, and they can have children of their own.
+      The main purpose of the binary tree is to store large amounts of data while remaining memory effecient.
+
+  - The first node in a binary tree is calle the "root" and the nodes at the very bottom are called "leaves".
+  - Each position that follows the root  in the binary tree is called a "node"
+  - The number of levels in a tree is called the height.
+  - Each node in the binary tree will store a key(the username) and a value(the object stored by the given username)
+  - A binary tree can be envisioned as an upside down real-world tree, with each node having 0, 1, or 2, sub nodes.
+  - The subnodes on the left side start with letters that come before the parent node in the alphabet.
+  - The subnodes on the right side start with letters that come after the parent node in the alphabet.
+  - The afformentioned properties make the tree a "binary search tree"
+
+  *** Note: Balanced Tree: The tree is balanced i.e. it does not skew too heavily to one side or the other. 
+  The left and right subtrees of any node shouldn't differ in height/depth by more than 1 level.***
+
+
+
+
+
+ 
+
+
+
