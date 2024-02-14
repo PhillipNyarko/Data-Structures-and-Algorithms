@@ -1,0 +1,82 @@
+1. State the problem clearly
+	Given a string and a number of rows, arrange the elements of the string in a zig zag pattern(denoted in the image).
+	Then, print the 2D array.
+
+2. Define a sample input and output
+
+Example 1:
+
+Input: s = "PAYPALISHIRING", numRows = 3
+Output: "PAHNAPLSIIGYIR"
+Explaination: 
+P   A   H   N
+A P L S I I G
+Y   I   R
+
+Example 2:
+
+Input: s = "PAYPALISHIRING", numRows = 4
+Output: "PINALSIGYAHRPI"
+Explanation:
+P     I    N
+A   L S  I G
+Y A   H R
+P     I
+
+3. 
+	*** There is a finite amount of iterations due to the length of the input string being finite,
+		Therfore, we will use a for loop.***
+	*** We can use 2 counters that we change for the 2 values (current_array, current_array_position)***
+
+	a. Create a for loop that goes from 0 to the length of the input string
+
+	b. Create a variable to keep track of the current row (start at 0), 
+	   Create a variable to keep track of the current array,
+	   create a variable to keep track of the current array position,
+	   create a varaible to keep track of the direction (= up/down),
+
+
+	c. Place each subsequent index of the string in a subsequent list that is in the 2d array moving down,
+	up unitl the given number of rows. 
+
+	d. If we have reached the number of rows specified, start placing elements moving upward  
+	until we reach the top. When the direction is up, move up one and to the right one. 
+	(switch the direction variable from down to up when the current row equals the number of rows).
+	repeat until the end of the input string is reached
+
+	e. return the contents of the array
+
+2d_array = [           current_array = 0  
+	[P, _, _, _]	   current_array_position = 0
+	[_, _, _, _] 	   direction = down
+	[_, _, _, _]
+]
+
+2d_array = [           current_array = 1  
+	[P, _, _, _]	   current_array_position = 0
+	[A, _, _, _] 	   direction = down
+	[_, _, _, _]
+]
+
+2d_array = [           current_array = 2  
+	[P, _, _, _]	   current_array_position = 0
+	[A, _, _, _] 	   direction = down
+	[Y, _, _, _]
+]
+
+*** if the current_array = the number of rows, switch the direction to up and add 1 to the current_array_position ***
+*** if the direction is up and we are not at a current_array value of 0, add 1 to the current_array_position ***
+
+2d_array = [           current_array = 1  
+	[P, _, _, _]	   current_array_position = 1
+	[A, P, _, _] 	   direction = up 
+	[Y, _, _, _]
+
+
+2d_array = [           current_array = 0  
+	[P, _, A, _]	   current_array_position = 2
+	[A, P, _, _] 	   direction = up 
+	[Y, _, _, _]
+]
+
+
