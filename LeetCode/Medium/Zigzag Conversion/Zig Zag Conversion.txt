@@ -1,0 +1,79 @@
+1. State the problem clearly
+	Given a string and a number of rows, arrange the elements of the string in a zig zag pattern(denoted in the image).
+	Then, print the 2D array.
+
+2. Define a sample input and output
+
+Example 1:
+
+Input: s = "PAYPALISHIRING", numRows = 3
+Output: "PAHNAPLSIIGYIR"
+Explaination: 
+P   A   H   N
+A P L S I I G
+Y   I   R
+
+Example 2:
+
+Input: s = "PAYPALISHIRING", numRows = 4
+Output: "PINALSIGYAHRPI"
+Explanation:
+P     I    N
+A   L S  I G
+Y A   H R
+P     I
+
+3. 
+	a. Create a for loop that goes from 0 to the length of the input string
+
+	b. Create a variable to keep track of the current row (start at 0)
+
+	c. Place each subsequent index of the string in a subsequent list that is in the 2d array moving down,
+	up unitl the given number of rows. 
+	Store a bool value that will keep track of the current insertion direction (direction = up/down)
+
+	d. If we have reached the number of rows specified, start placing elements 
+	backwards until we reach the top. When the direction is up, move up one and to the right one. 
+	(switch the direction variable from down to up when the current row equals the number of rows).
+	repeat until the end of the input string is reached
+
+2d_array = [             
+	[P, _, _, _]
+	[_, _, _, _]
+	[_, _, _, _]
+]
+2d_array = [
+	[P, _, _, _]
+	[A, _, _, _]
+	[_, _, _, _]
+]
+2d_array = [
+	[P, _, _, _]
+	[A, _, _, _]
+	[Y, _, _, _]
+]
+2d_array = [
+	[P, _, _, _]
+	[A, P, _, _]
+	[Y, _, _, _]
+]
+2d_array = [
+	[P, _, A, _]
+	[A, P, _, _]
+	[Y, _, _, _]
+]
+2d_array = [
+	[P, _, A, _]
+	[A, P, L, _]
+	[Y, _, _, _]
+]
+2d_array = [
+	[P, _, A, _]
+	[A, P, L, _]
+	[Y, _, I, _]
+]
+2d_array = [
+	[P, _, A, _]
+	[A, P, L, S]
+	[Y, _, I, _]
+]
