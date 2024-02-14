@@ -2,7 +2,7 @@
 	Given a string and a number of rows, arrange the elements of the string in a zig zag pattern(denoted in the image).
 	Then, print the 2D array.
 
-2. Define a sample input and output
+2. Define a sample input and output, identify any edge cases
 
 Example 1:
 
@@ -23,7 +23,7 @@ A   L S  I G
 Y A   H R
 P     I
 
-3. 
+3. Come up with basic solution. State it in plain english
 	*** There is a finite amount of iterations due to the length of the input string being finite,
 		Therfore, we will use a for loop.***
 	*** We can use 2 counters that we change for the 2 values (current_array, current_array_position)***
@@ -79,4 +79,10 @@ P     I
 	[Y, _, _, _]
 ]
 
+4. Implement Solution, test, using sample inputs and outputs
+for got to think of/handle edge case for when the number of rows is 1.
+	fix: if rows == 1:
+			return string	
 
+5. Analyze time complexity, identify any ineffeciencies.
+	Time complexity: O(n)
