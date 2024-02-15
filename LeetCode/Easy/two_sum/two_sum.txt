@@ -53,10 +53,20 @@ if the answer is not found, repeat the entire process with starting with index 1
 5. Code naive approach and test
 
 4. Analyze the time complexity
+Time complexity: O(n^2)
 
 6. Look for improvement areas/inefficiencies
 Maybe sort the list and do binary search
+Use hash map to hold values for O(1) lookup. Instan
 
 7. Pseudocode a more efficient approach
+	- Iterate through the input list and remove any elements that are greater than the target value
+	- Iterate throught the list, subtracting the value of each index with the target value to get the difference 
+	we are looking for.
+	- Check if that difference is in the hash map. 
+	-If the difference between the target value and the current index is in the hash map, return the current index
+	and the index(key) of the value found in the hash map
+	-If the difference between the target value and the current index is not in the hash map, add the currrent value
+	to the hash map.
 
 8. Code final algorithm.
