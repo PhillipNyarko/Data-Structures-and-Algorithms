@@ -1,0 +1,46 @@
+1. State the question in plain english
+	- You will be given a list of strings. This list of strings will contain multiple sets of anagrams. For example,
+	3 out of 5 of the words in the list could be anagrams of one each other, while the other two words in the list are anagrams
+	of each other. Put each of the words that are anagrams of each other in their own group.
+
+2. Give examples and list constraints
+	- Example 1:
+
+	Input: strs = ["eat","tea","tan","ate","nat","bat"]
+	Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+	
+	Example 2:
+	Input: strs = ["racecar", "racecar", "silent", "listen", "heart", "earth"]
+	Output: [[""]]
+
+	Example 3:
+
+	Input: strs = [""]
+	Output: [[""]]
+
+	Example 4:
+
+	Input: strs = ["a"]
+	Output: [["a"]]
+
+	- Constraints
+	all lowercase
+	list will never be empty (at least one index)
+	
+	- Assumed constraints
+	Every word in the list will be an anagram of at least one other word
+
+3. Come up with a rudimentary solution, state it in plain english (pseudocode a naive solution).
+	- create a copy of the list and sort each index alphabetically, this will make it much easier to decide which
+	indicies are anagrams
+
+	Iterate over the list like a 2D array
+		put the first index in the output array, in it's own array
+		check if the alphabetically sorted version of the word at the current index is the same as the 
+		alphabetically sorted version of any of the other indicies.
+
+		if that is true, add the word at that index to the current sub-array
+		else do nothing
+
+	if there is only one element, return the one element in a nested list
+	if the only listed element is a empty string, return an empty string in a nested list
