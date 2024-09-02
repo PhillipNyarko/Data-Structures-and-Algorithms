@@ -39,8 +39,20 @@
 		check if the alphabetically sorted version of the word at the current index is the same as the 
 		alphabetically sorted version of any of the other indicies.
 
+		When making the checks/comparisons, do not check the current index with itself.
+
+		Also do not check the current index with any previous indicies, as they will
+		have already been checked, given the fact that any previous index was previously
+		the foucus of comparison, so its anagram group has already been created
+
 		if that is true, add the word at that index to the current sub-array
 		else do nothing
+	
+	***The above solution worked, but I could not find an efficient way to 
+	skip over the words whose anagrams have already been found. As a result,
+	I decided to jump straight to a recursive approach that looks for 
+	anagrams of the first index, adds them to an output list, and then
+	runs the anagram search with a subset of the data***
 
 	if there is only one element, return the one element in a nested list
 	if the only listed element is a empty string, return an empty string in a nested list
