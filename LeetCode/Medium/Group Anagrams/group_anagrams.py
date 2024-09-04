@@ -1,5 +1,4 @@
 words = ["eat", "tea", "tan", "ate", "nat", "bat", "tab", "ran"]
-words = ["racecar", "racecar", "silent", "listen", "heart", "earth"]
 
 output = []
 
@@ -7,8 +6,10 @@ def anagram_search(words):
     anagram_list = [words[0]]
 
     for i in range(1, len(words)):
-        if(sorted(words[i]) == sorted(words[0])):
-            anagram_list.append(words[i])
+        if(words[i][0] in words[0]):
+            if(words[i][1] in words[0]):
+                if(words[i][2] in words[0]):
+                    anagram_list.append(words[i])
 
     return anagram_list
 

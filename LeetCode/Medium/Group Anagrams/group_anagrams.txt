@@ -56,3 +56,6 @@
 
 	if there is only one element, return the one element in a nested list
 	if the only listed element is a empty string, return an empty string in a nested list
+
+		Time complexity O(n*n-k) wher n-k is the new length of the searched list
+		after each group is found and removed
