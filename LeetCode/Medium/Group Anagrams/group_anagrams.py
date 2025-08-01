@@ -14,7 +14,7 @@ def anagram_search(words):
     return anagram_list
 
 def group_anagrams(words):
-    while len(words) > 0:
+   while len(words) > 0:
         current_anagram_set = anagram_search(words)
         output.append(current_anagram_set)
         words = [i for i in words if i not in current_anagram_set]
